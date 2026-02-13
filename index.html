@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gerador de Planilha</title>
+    <link rel="stylesheet" href="./renderer/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="app">
+        <header class="hero">
+          <h1>Gerador de Planilha</h1>
+        </header>
+
+        <nav class="tabs" role="tablist" aria-label="Tipos de planilha">
+          <button
+            id="tab-venda"
+            class="tab is-active"
+            type="button"
+            data-tab="venda"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-venda"
+          >
+            1 Planilha de Venda
+          </button>
+          <button
+            id="tab-preco"
+            class="tab"
+            type="button"
+            data-tab="preco"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-preco"
+          >
+            2 Planilha de Preco
+          </button>
+          <button
+            id="tab-compra"
+            class="tab"
+            type="button"
+            data-tab="compra"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-compra"
+          >
+            3 Planilha de Compra
+          </button>
+          <button
+            id="tab-clientes"
+            class="tab"
+            type="button"
+            data-tab="clientes"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-clientes"
+          >
+            4 Cadastro de Clientes
+          </button>
+          <button
+            id="tab-produtos"
+            class="tab"
+            type="button"
+            data-tab="produtos"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-produtos"
+          >
+            5 Cadastro de Produtos
+          </button>
+        </nav>
+
+        <section
+          id="panel-venda"
+          class="panel is-active"
+          data-panel="venda"
+          role="tabpanel"
+          aria-labelledby="tab-venda"
+        >
+          <div class="card">
+            <div class="row">
+              <div class="field">
+                <label for="venda-clientes">Qtd. de clientes (colunas D...)</label>
+                <input id="venda-clientes" type="number" min="1" value="12" />
+              </div>
+              <div class="field">
+                <label for="venda-produtos">Qtd. de produtos (linhas 4...)</label>
+                <input id="venda-produtos" type="number" min="1" value="30" />
+              </div>
+            </div>
+            <p id="venda-cadastro-info-clientes" class="inline-note"></p>
+            <p id="venda-cadastro-info-produtos" class="inline-note"></p>
+
+            <div class="field">
+              <label for="venda-nome">Nome do arquivo (opcional)</label>
+              <input id="venda-nome" placeholder="Importacao_Venda_YYYY-MM-DD.xlsx" />
+            </div>
+
+            <button id="venda-gerar" class="primary" type="button">Criar planilha de venda</button>
+
+            <div class="actions">
+              <button id="venda-abrir-arquivo" class="secondary" type="button" disabled>
+                Abrir planilha gerada
+              </button>
+              <button id="venda-abrir-pasta" class="secondary" type="button" disabled>
+                Abrir pasta de saida
+              </button>
+            </div>
+
+            <div id="venda-status" class="status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section
+          id="panel-preco"
+          class="panel"
+          data-panel="preco"
+          role="tabpanel"
+          aria-labelledby="tab-preco"
+          hidden
+        >
+          <div class="card">
+            <div class="row">
+              <div class="field">
+                <label for="preco-tabelas">Qtd. de clientes (colunas D...)</label>
+                <input id="preco-tabelas" type="number" min="1" value="6" />
+              </div>
+              <div class="field">
+                <label for="preco-produtos">Qtd. de produtos (linhas 4...)</label>
+                <input id="preco-produtos" type="number" min="1" value="30" />
+              </div>
+            </div>
+            <p id="preco-cadastro-info-clientes" class="inline-note"></p>
+            <p id="preco-cadastro-info-produtos" class="inline-note"></p>
+
+            <div class="field">
+              <label for="preco-nome">Nome do arquivo (opcional)</label>
+              <input id="preco-nome" placeholder="Importacao_Preco_YYYY-MM-DD.xlsx" />
+            </div>
+
+            <button id="preco-gerar" class="primary" type="button">Criar planilha de preco</button>
+
+            <div class="actions">
+              <button id="preco-abrir-arquivo" class="secondary" type="button" disabled>
+                Abrir planilha gerada
+              </button>
+              <button id="preco-abrir-pasta" class="secondary" type="button" disabled>
+                Abrir pasta de saida
+              </button>
+            </div>
+
+            <div id="preco-status" class="status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section
+          id="panel-compra"
+          class="panel"
+          data-panel="compra"
+          role="tabpanel"
+          aria-labelledby="tab-compra"
+          hidden
+        >
+          <div class="card">
+            <div class="field">
+              <label for="compra-linhas">Qtd. de linhas da compra (a partir da linha 3)</label>
+              <input id="compra-linhas" type="number" min="1" value="30" />
+            </div>
+
+            <div class="field">
+              <label for="compra-nome">Nome do arquivo (opcional)</label>
+              <input id="compra-nome" placeholder="Importacao_Compra_YYYY-MM-DD.xlsx" />
+            </div>
+
+            <button id="compra-gerar" class="primary" type="button">Criar planilha de compra</button>
+
+            <div class="actions">
+              <button id="compra-abrir-arquivo" class="secondary" type="button" disabled>
+                Abrir planilha gerada
+              </button>
+              <button id="compra-abrir-pasta" class="secondary" type="button" disabled>
+                Abrir pasta de saida
+              </button>
+            </div>
+
+            <div id="compra-status" class="status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section
+          id="panel-clientes"
+          class="panel"
+          data-panel="clientes"
+          role="tabpanel"
+          aria-labelledby="tab-clientes"
+          hidden
+        >
+          <div class="card">
+            <p class="inline-note">
+              Cadastro usado nas planilhas de venda e preco. Colunas esperadas na importacao:
+              A = ID cliente, B = Nome cliente, C = ID rota.
+            </p>
+
+            <div class="row row-3">
+              <div class="field">
+                <label for="clientes-id">ID Cliente</label>
+                <input id="clientes-id" placeholder="Ex: 1001" />
+              </div>
+              <div class="field">
+                <label for="clientes-nome">Nome do Cliente</label>
+                <input id="clientes-nome" placeholder="Ex: Cliente ABC" />
+              </div>
+              <div class="field">
+                <label for="clientes-rota">ID Rota</label>
+                <input id="clientes-rota" placeholder="Ex: ROTA-01" />
+              </div>
+            </div>
+
+            <div class="actions actions-3">
+              <button id="clientes-adicionar" class="secondary" type="button">Adicionar linha</button>
+              <button id="clientes-importar" class="secondary" type="button">
+                Importar CSV/XLS/XLSX
+              </button>
+              <button id="clientes-limpar" class="secondary danger" type="button">Limpar tudo</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="grid-table">
+                <thead>
+                  <tr>
+                    <th>ID Cliente</th>
+                    <th>Nome do Cliente</th>
+                    <th>ID Rota</th>
+                    <th class="col-action">Acao</th>
+                  </tr>
+                </thead>
+                <tbody id="clientes-tbody"></tbody>
+              </table>
+            </div>
+
+            <button id="clientes-salvar" class="primary" type="button">Salvar cadastro</button>
+            <div id="clientes-status" class="status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section
+          id="panel-produtos"
+          class="panel"
+          data-panel="produtos"
+          role="tabpanel"
+          aria-labelledby="tab-produtos"
+          hidden
+        >
+          <div class="card">
+            <p class="inline-note">
+              Cadastro usado nas planilhas de venda e preco. Colunas esperadas na importacao:
+              A = ID produto, B = Nome produto.
+            </p>
+
+            <div class="row">
+              <div class="field">
+                <label for="produtos-id">ID Produto</label>
+                <input id="produtos-id" placeholder="Ex: 5001" />
+              </div>
+              <div class="field">
+                <label for="produtos-nome">Nome do Produto</label>
+                <input id="produtos-nome" placeholder="Ex: Produto XYZ" />
+              </div>
+            </div>
+
+            <div class="actions actions-3">
+              <button id="produtos-adicionar" class="secondary" type="button">Adicionar linha</button>
+              <button id="produtos-importar" class="secondary" type="button">
+                Importar CSV/XLS/XLSX
+              </button>
+              <button id="produtos-limpar" class="secondary danger" type="button">Limpar tudo</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="grid-table">
+                <thead>
+                  <tr>
+                    <th>ID Produto</th>
+                    <th>Nome do Produto</th>
+                    <th class="col-action">Acao</th>
+                  </tr>
+                </thead>
+                <tbody id="produtos-tbody"></tbody>
+              </table>
+            </div>
+
+            <button id="produtos-salvar" class="primary" type="button">Salvar cadastro</button>
+            <div id="produtos-status" class="status" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./renderer/app.js"></script>
+  </body>
+</html>
