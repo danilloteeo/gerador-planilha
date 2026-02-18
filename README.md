@@ -112,9 +112,3 @@ npm start
 - `data/` – gerenciamento de cadastros de clientes e produtos.
 - `icon.ico` – ícone do aplicativo.
 
----
-
-### Licença
-
-Defina aqui a licença do projeto (por exemplo, MIT, GPL, uso interno, etc.).
-
